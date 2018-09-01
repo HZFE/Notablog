@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import NotaBlog from './NotaBlog.vue'
 import router from './router'
-import store from './store'
-import './registerServiceWorker'
+import store from './store/store'
+import './utils/registerServiceWorker'
 
 Vue.config.productionTip = false
 
