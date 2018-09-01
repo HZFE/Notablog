@@ -14,5 +14,6 @@ module.exports = {
       warnings: true,
       errors: true
     }
-  }
+  },
+  baseUrl: '.'
 }

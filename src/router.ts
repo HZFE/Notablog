@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import(`./theme-${theme}/App.vue`)
+    component: () => import(/* webpackChunkName: "Home" */`./theme-${theme}/App.vue`)
   }
 ]
 const router = new Router({
