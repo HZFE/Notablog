@@ -13,6 +13,16 @@ module.exports = {
     overlay: {
       warnings: true,
       errors: true
+    },
+    proxy: {
+      '/api': {
+        target: 'http://b5fb954b.ngrok.io',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api' : '/'
+        },
+      }
     }
   },
   baseUrl: '.'
