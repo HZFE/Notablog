@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Config from './config.json'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+const { theme } = Config
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: () => import(`./theme-${theme}/App.vue`)
+  }
+]
+const router = new Router({
+  routes
 })
+
+// Dynamic import customize routes
+const { default: route } = require(`./theme-${theme}/route.ts`)
+route && router.addRoutes(route)
+
+export default router
