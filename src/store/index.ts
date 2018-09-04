@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Config from '@/config.json'
-import { getArticles } from '@/api/'
-import { hookApply } from './hooks'
+import { getArticles, getUserState } from '@/api/'
+import Hook from './Hook'
 
 const { theme } = Config
 
@@ -10,6 +10,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
+    user: null,
     articles: []
   },
   getters: {
@@ -17,13 +18,27 @@ const store = new Vuex.Store({
   },
   mutations: {
     SET_ARTICLES (state, articles) {
-      state.articles = hookApply('SET_ARTICLES', articles)
+      state.articles = Hook.apply('SET_ARTICLES', articles)
+    },
+    SET_USER (state, user) {
+      state = user
     }
   },
   actions: {
-    GET_ARTICLES ({ state, commit }, { offset = 0, limit = 10 } = {}) {
+    INIT ({ commit }) {
+      const user = getUserState()
+        .then((user: any) => commit('SET_USER', user))
+        .catch((err: any) => {
+          commit('SET_USER', null)
+          throw err
+        })
+
+      return Promise.all([user])
+    },
+    GET_ARTICLES ({ commit }, { offset = 0, limit = 10 } = {}) {
       return getArticles({ offset, limit })
         .then((data: any) => {
+          console.log(data)
           commit('SET_ARTICLES', data.articles)
         })
     }

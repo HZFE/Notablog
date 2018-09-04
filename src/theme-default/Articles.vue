@@ -16,7 +16,7 @@ import {
   Getter,
   namespace
 } from 'vuex-class'
-import { hookRegister } from '@/store/hooks'
+import Hook from '@/store/Hook'
 
 const Self = namespace('self')
 
@@ -25,12 +25,12 @@ export default class App extends Vue {
   @State articles!: any[]
 
   mounted () {
-    hookRegister('SET_ARTICLES', (articles: any[] = []) => {
+    Hook.register('SET_ARTICLES', (articles: any[] = []) => {
       return articles.map(article => {
         const tmp: any = {}
         Object.keys(article).forEach(key => {
           // first letter to lower case
-          tmp[`${key[0].toLowerCase()}${key.slice(1)}`] = article[key]
+          tmp[`${key.replace(/\w/, (w: string) => w.toLowerCase())}`] = article[key]
         })
         return tmp
       })
