@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/webpack-env": "^1.13.6",
     "axios": "^0.18.0",
+    "commander": "^2.18.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",

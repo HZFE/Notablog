@@ -8,8 +8,13 @@ const { theme } = Config
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: () => import(/* webpackChunkName: "Home" */`./theme-${theme}/App.vue`)
+  },
+  {
+    path: '*',
+    name: '404',
+    component: () => import(/* webpackChunkName: "404" */`./theme-${theme}/404.vue`)
   }
 ]
 const router = new Router({
