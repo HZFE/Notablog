@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["99cd"],{"99cd":function(n,e,t){"use strict";t.r(e);var o=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("section",[n._v("\n  Post\n")])},s=[],c={},l=c,u=t("2877"),i=Object(u["a"])(l,o,s,!1,null,null,null);i.options.__file="Post.vue";e["default"]=i.exports}}]);
+//# sourceMappingURL=99cd.a7096a4e.js.map
